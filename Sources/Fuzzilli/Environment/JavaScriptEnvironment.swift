@@ -179,6 +179,9 @@ public class JavaScriptEnvironment: ComponentBase, Environment {
         registerBuiltin("NaN", ofType: .jsNaN)
         registerBuiltin("Infinity", ofType: .jsInfinity)
 
+        registerBuiltin("isInteger", ofType: .jsIsIntegerFunction)
+        registerBuiltin("isSafeInteger", ofType: .jsIsSafeIntegerFunction)
+
         for (builtin, type) in additionalBuiltins {
             registerBuiltin(builtin, ofType: type)
         }
@@ -460,6 +463,10 @@ public extension JSType {
 
     /// Type of the JavaScript isFinite builtin function.
     static let jsIsFiniteFunction = JSType.function([.anything] => .boolean)
+
+    static let jsIsIntegerFunction= JSType.function([.anything] => .boolean)
+
+    static let jsIsSafeIntegerFunction= JSType.function([.anything] => .boolean)
 
     /// Type of the JavaScript escape builtin function.
     static let jsEscapeFunction = JSType.function([.anything] => .jsString)
